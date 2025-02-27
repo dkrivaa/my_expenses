@@ -65,6 +65,7 @@ with st.form(key='change_report', clear_on_submit=True):
                       index=None)
 
     submitted = st.form_submit_button('Submit')
+    st.divider()
     if new_year is not None and months is not None and submitted:
         new_date = make_new_report_date(new_year, months)
         show_results(new_date)

@@ -87,7 +87,7 @@ def get_expenses(date=None):
     token = get_token()
 
     # Getting upcoming / present reporting period
-    fromDate, toDate = report_period()
+    fromDate, toDate = report_period(date)
 
     dates = {
         'fromDate': fromDate,
