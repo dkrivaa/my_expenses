@@ -65,6 +65,7 @@ with st.container():
         lacking, shorts = check_number_of_expenses(new_date)
         new_year = None
         months = None
+        st.rerun()
 
 
 
