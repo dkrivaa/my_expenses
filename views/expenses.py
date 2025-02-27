@@ -62,7 +62,7 @@ with st.container():
     if months is not None:
         submitted = st.button('Submit')
         new_date = make_new_report_date(new_year, months)
-        st.write(new_date)
+        lacking, shorts = check_number_of_expenses(new_date)
 
 
 
