@@ -37,7 +37,7 @@ def show_results(date=None):
         st.write(f'{start}-{end}, {year}')
         st.divider()
 
-        lacking, shorts = check_number_of_expenses()
+        lacking, shorts = check_number_of_expenses(date)
         st.subheader('Companies lacking bills altogether:')
         if len(lacking) > 0:
             for company in lacking:
