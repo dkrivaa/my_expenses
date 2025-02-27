@@ -45,7 +45,7 @@ with st.container():
 
     st.subheader('Change Reporting Period:')
     year_options = year_options_list()
-    new_year = st.selectbox('Choose Year', value=int, options=year_options)
+    new_year = st.selectbox('Choose Year', options=year_options)
     months = st.radio('Choose reporting months',
                       options=['Jan-Feb', 'Mar-Apr', 'May-June', 'July-Aug', 'Sep-Oct', 'Nov-Dec'])
 
