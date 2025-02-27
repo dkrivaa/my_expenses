@@ -37,4 +37,13 @@ with st.container():
     else:
         st.write('No Companies')
 
+    st.divider()
+
+    st.subheader('Change Reporting Period:')
+    new_year = st.number_input('Enter Year')
+    months = st.radio('Choose reporting months',
+                      options=['Jan-Feb', 'Mar-Apr', 'May-June', 'July-Aug', 'Sep-Oct', 'Nov-Dec'])
+
+
+
 
