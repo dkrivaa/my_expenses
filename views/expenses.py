@@ -30,28 +30,32 @@ def make_new_report_date(year, months):
 
 
 ############# PAGE #############
-with st.container():
-    st.subheader('Reporting Period:')
-    start, end, year = dates()
-    st.write(f'{start}-{end}, {year}')
-    st.divider()
+def show_results(date=None):
+    with st.container():
+        st.subheader('Reporting Period:')
+        start, end, year = dates()
+        st.write(f'{start}-{end}, {year}')
+        st.divider()
 
-    lacking, shorts = check_number_of_expenses()
-    st.subheader('Companies lacking bills altogether:')
-    if len(lacking) > 0:
-        for company in lacking:
-            st.write(company)
-    else:
-        st.write('No Companies')
-    st.subheader('Companies with less bills than expected:')
-    if len(shorts) > 0:
-        for company in shorts:
-            st.write(company)
-    else:
-        st.write('No Companies')
+        lacking, shorts = check_number_of_expenses()
+        st.subheader('Companies lacking bills altogether:')
+        if len(lacking) > 0:
+            for company in lacking:
+                st.write(company)
+        else:
+            st.write('No Companies')
+        st.subheader('Companies with less bills than expected:')
+        if len(shorts) > 0:
+            for company in shorts:
+                st.write(company)
+        else:
+            st.write('No Companies')
 
-    st.divider()
 
+show_results()
+st.divider()
+
+with st.form(key='change_report', clear_on_submit=True):
     st.subheader('Change Reporting Period:')
     year_options = year_options_list()
     new_year = st.selectbox('Choose Year', options=year_options)
@@ -60,12 +64,10 @@ with st.container():
                       index=None)
 
     if months is not None:
-        submitted = st.button('Submit')
+        submitted = st.form_submit_button('Submit')
         new_date = make_new_report_date(new_year, months)
-        lacking, shorts = check_number_of_expenses(new_date)
-        new_year = None
-        months = None
-        st.rerun()
+        show_results(new_date)
+
 
 
 
