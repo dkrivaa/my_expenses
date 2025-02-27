@@ -5,9 +5,9 @@ import calendar
 from expense_data import check_number_of_expenses, report_period
 
 
-def dates():
+def dates(date=None):
     """ Getting relevant reporting period dates"""
-    start_date, end_date = report_period()
+    start_date, end_date = report_period(date)
     start = datetime.strptime(start_date, '%Y-%m-%d')
     start_name = start.strftime('%B')
     end = datetime.strptime(end_date, '%Y-%m-%d')
@@ -33,7 +33,7 @@ def make_new_report_date(year, months):
 def show_results(date=None):
     with st.container():
         st.subheader('Reporting Period:')
-        start, end, year = dates()
+        start, end, year = dates(date)
         st.write(f'{start}-{end}, {year}')
         st.divider()
 
