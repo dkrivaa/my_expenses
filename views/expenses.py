@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import datetime
+import calendar
 
 from expense_data import check_number_of_expenses, report_period
 
@@ -15,9 +16,17 @@ def dates():
 
     return start_name, end_name, year
 
+
 def year_options_list():
     current_year = datetime.now().year
     return list(range(current_year - 2, current_year + 5 + 1))
+
+
+def make_new_report_date(year, months):
+    options = ['Jan-Feb', 'Mar-Apr', 'May-June', 'July-Aug', 'Sep-Oct', 'Nov-Dec']
+    last_month = options.index(months) * 2 + 2
+    last_day = calendar.monthrange(year, last_month)[1]
+    return f'{year}-{last_month}-{last_day}'
 
 
 ############# PAGE #############
@@ -47,7 +56,14 @@ with st.container():
     year_options = year_options_list()
     new_year = st.selectbox('Choose Year', options=year_options)
     months = st.radio('Choose reporting months',
-                      options=['Jan-Feb', 'Mar-Apr', 'May-June', 'July-Aug', 'Sep-Oct', 'Nov-Dec'])
+                      options=['Jan-Feb', 'Mar-Apr', 'May-June', 'July-Aug', 'Sep-Oct', 'Nov-Dec'],
+                      index=None)
+
+    if months is not None:
+        submitted = st.button('Submit')
+        new_date = make_new_report_date(new_year, months)
+        st.write(new_date)
+
 
 
 
