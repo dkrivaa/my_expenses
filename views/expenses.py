@@ -58,15 +58,18 @@ st.divider()
 with st.form(key='change_report', clear_on_submit=True):
     st.subheader('Change Reporting Period:')
     year_options = year_options_list()
-    new_year = st.selectbox('Choose Year', options=year_options)
+    new_year = st.selectbox('Choose Year', options=year_options, index=None,
+                            placeholder='Choose a year')
     months = st.radio('Choose reporting months',
                       options=['Jan-Feb', 'Mar-Apr', 'May-June', 'July-Aug', 'Sep-Oct', 'Nov-Dec'],
                       index=None)
 
-    if months is not None:
-        submitted = st.form_submit_button('Submit')
+    submitted = st.form_submit_button('Submit')
+    if new_year is not None and months is not None and submitted:
         new_date = make_new_report_date(new_year, months)
         show_results(new_date)
+    else:
+        st.error('Choose Year and Months')
 
 
 
