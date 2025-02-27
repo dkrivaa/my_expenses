@@ -63,6 +63,8 @@ with st.container():
         submitted = st.button('Submit')
         new_date = make_new_report_date(new_year, months)
         lacking, shorts = check_number_of_expenses(new_date)
+        new_year = None
+        months = None
 
 
 
