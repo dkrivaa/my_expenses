@@ -15,6 +15,10 @@ def dates():
 
     return start_name, end_name, year
 
+def year_options_list():
+    current_year = datetime.now().year
+    return list(range(current_year - 2, current_year + 5 + 1))
+
 
 ############# PAGE #############
 with st.container():
@@ -40,7 +44,8 @@ with st.container():
     st.divider()
 
     st.subheader('Change Reporting Period:')
-    new_year = st.number_input('Enter Year')
+    year_options = year_options_list()
+    new_year = st.selectbox('Choose Year', value=int, options=year_options)
     months = st.radio('Choose reporting months',
                       options=['Jan-Feb', 'Mar-Apr', 'May-June', 'July-Aug', 'Sep-Oct', 'Nov-Dec'])
 
